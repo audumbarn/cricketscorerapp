@@ -35,11 +35,11 @@ public class SwaggerConfig {
     //TODO change following info
     private ApiInfo apiInfo() {
         return new ApiInfo(
-          "Cricket Scorer App REST API", 
-          "Following are the all available REST APIs", 
-          "API TOS", 
+          "Spring Boot REST API", 
+          "Spring Boot REST API for Cricket Scorer App", 
+          "1.0", 
           "Terms of service", 
-          new Contact("Audumbar Nevarekar", "www.domainnotreg.com", "letyouknow@domainnotreg.com"), 
-          "License of API", "API license URL", Collections.emptyList());
+          new Contact("Audumbar Nevarekar", "www.domainnotreg.com", "audumbarnevarekar@gmail.com"), 
+          "Apache License Version 2.0", "https://www.apache.org/licenses/LICENSE-2.0", Collections.emptyList());
    }
 }
