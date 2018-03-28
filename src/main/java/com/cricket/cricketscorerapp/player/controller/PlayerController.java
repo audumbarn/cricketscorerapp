@@ -23,8 +23,8 @@ public class PlayerController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String addPlayer(@RequestBody Player p) {
-		Player player = new Player(p.getFirstName(), p.getLastName(),new Date(), (UUID.randomUUID().toString()));
-		return playerService.addPlayer(player);
+		//Player player = new Player(p.getFirstName(), p.getLastName(),new Date(), (UUID.randomUUID().toString()));
+		return playerService.addPlayer(p);
 	}
 	
 	@RequestMapping(value="/get/{playerId}", method=RequestMethod.GET)
