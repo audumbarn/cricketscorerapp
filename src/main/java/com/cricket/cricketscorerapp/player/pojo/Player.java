@@ -15,6 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.cricket.cricketscorerapp.stats.pojo.BattingStats;
 import com.cricket.cricketscorerapp.stats.pojo.BowlingStats;
+import com.cricket.cricketscorerapp.stats.pojo.FieldingStats;
 
 @Entity(name="csa_tbl_player")
 public class Player {
@@ -37,6 +38,10 @@ public class Player {
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="bowlingStatsId")
 	private BowlingStats bowlingStats;
+
+	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="fieldingStatsId")
+	private FieldingStats fieldingStats;
 	
 	private Player() {}
 
@@ -104,6 +109,14 @@ public class Player {
 
 	public void setBowlingStats(BowlingStats bowlingStats) {
 		this.bowlingStats = bowlingStats;
+	}
+
+	public FieldingStats getFieldingStats() {
+		return fieldingStats;
+	}
+
+	public void setFieldingStats(FieldingStats fieldingStats) {
+		this.fieldingStats = fieldingStats;
 	}
 
 
