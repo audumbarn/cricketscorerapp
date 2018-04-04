@@ -4,6 +4,7 @@
 package com.cricket.cricketscorerapp.tournament.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.cricket.cricketscorerapp.tournament.pojo.Tournament;
 
@@ -12,7 +13,11 @@ import com.cricket.cricketscorerapp.tournament.pojo.Tournament;
  *
  */
 public interface TournamentService {
-	public void addTournament(Tournament tournament);
-	public Tournament getTournament(String tournamentId);
+	
+	public String addTournament(Tournament tournament);
+	
+	public Optional<Tournament> getTournament(String tournamentId);
+	
 	public List<Tournament> getAllTournaments();
+	
 }

@@ -4,6 +4,7 @@
 package com.cricket.cricketscorerapp.tournament.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,21 +23,19 @@ public class TournamentServiceImpl implements TournamentService{
 	TournamentRepository tournamentRepository;
 	
 	@Override
-	public void addTournament(Tournament tournament) {
-		tournamentRepository.save(tournament);
-		
+	public String addTournament(Tournament tournament) {
+		return (tournamentRepository.save(tournament)).getTournamentId();
 	}
 
 	@Override
-	public Tournament getTournament(String tournamentId) {
-		return tournamentRepository.getOne(tournamentId);
+	public Optional<Tournament> getTournament(String tournamentId) {
+		return tournamentRepository.findById(tournamentId);
 	}
 
 	
 	@Override
 	public List<Tournament> getAllTournaments() {
-		// TODO Auto-generated method stub
-		return null;
+		return tournamentRepository.findAll();
 	}
 
 }
