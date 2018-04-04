@@ -3,13 +3,18 @@
  */
 package com.cricket.cricketscorerapp.match.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cricket.cricketscorerapp.match.exception.MatchNotFoundException;
 import com.cricket.cricketscorerapp.match.pojo.Match;
 import com.cricket.cricketscorerapp.match.service.MatchService;
 
@@ -30,7 +35,18 @@ public class MatchController {
 	}
 	
 	@RequestMapping(value="/get/{matchId}", method=RequestMethod.GET)
-	public Match getMatch(@PathVariable("matchId") String matchId) {
-		return matchService.getMatch(matchId);
+	public ResponseEntity<Optional<Match>> getMatch(@PathVariable("matchId") String matchId) {
+		Optional<Match> match = matchService.getMatch(matchId);
+		if(!match.isPresent()) {
+			throw new MatchNotFoundException("Match Not Found");
+		}
+		
+		return ResponseEntity.ok(match);
+	}
+	
+	@RequestMapping(value="/get", method=RequestMethod.GET)
+	public List<Match> getAllMatches() {
+		return matchService.getAllMatches();
+		
 	}
 }

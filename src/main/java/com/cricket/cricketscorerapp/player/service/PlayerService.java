@@ -7,7 +7,9 @@ import com.cricket.cricketscorerapp.player.pojo.Player;
 
 public interface PlayerService {
 
-	public Optional<Player> getPlayerInfoById(String playerId);
-	public List<Player> getAllPlayersInfo();
+	public Optional<Player> getPlayer(String playerId);
+	
+	public List<Player> getAllPlayers();
+	
 	public String addPlayer(Player player);
 }

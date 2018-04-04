@@ -16,20 +16,18 @@ public class PlayerServiceImpl implements PlayerService {
 	PlayerRepository playerRepository;
 	
 	@Override
-	public Optional<Player> getPlayerInfoById(String playerId) {
+	public Optional<Player> getPlayer(String playerId) {
 		return playerRepository.findById(playerId);
 	}
 
 	@Override
-	public List<Player> getAllPlayersInfo() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Player> getAllPlayers() {
+		return playerRepository.findAll();
 	}
 
 	@Override
 	public String addPlayer(Player player) {
-		player=playerRepository.save(player);
-		return player.getPlayerId();
+		return (playerRepository.save(player)).getPlayerId();
 	}
 
 }

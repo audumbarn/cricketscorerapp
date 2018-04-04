@@ -32,8 +32,13 @@ public class MatchServiceImpl implements MatchService{
 	}
 
 	@Override
-	public Match getMatch(String matchId) {
-		return matchReository.getOne(matchId);
+	public Optional<Match> getMatch(String matchId) {
+		return matchReository.findById(matchId);
+	}
+
+	@Override
+	public List<Match> getAllMatches() {
+		return matchReository.findAll();
 	}
 
 }

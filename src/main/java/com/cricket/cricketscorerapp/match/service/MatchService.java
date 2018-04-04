@@ -3,6 +3,9 @@
  */
 package com.cricket.cricketscorerapp.match.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.cricket.cricketscorerapp.match.pojo.Match;
 
 /**
@@ -12,6 +15,8 @@ import com.cricket.cricketscorerapp.match.pojo.Match;
 public interface MatchService {
 	public void addMatch(Match match);
 	
-	public Match getMatch(String matchId);
+	public Optional<Match> getMatch(String matchId);
+	
+	public List<Match> getAllMatches();
 
 }
