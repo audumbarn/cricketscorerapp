@@ -35,6 +35,10 @@ public class Match {
 	private String matchLabel;
 	private String matchGroup;
 	
+	private String umpireOneId;
+	private String umpireTwoId;
+	
+	
 	public String getMatchId() {
 		return matchId;
 	}
@@ -112,6 +116,30 @@ public class Match {
 	}
 	public void setMatchGroup(String matchGroup) {
 		this.matchGroup = matchGroup;
+	}
+	/**
+	 * @return the umpireOneId
+	 */
+	public String getUmpireOneId() {
+		return umpireOneId;
+	}
+	/**
+	 * @param umpireOneId the umpireOneId to set
+	 */
+	public void setUmpireOneId(String umpireOneId) {
+		this.umpireOneId = umpireOneId;
+	}
+	/**
+	 * @return the umpireTwoId
+	 */
+	public String getUmpireTwoId() {
+		return umpireTwoId;
+	}
+	/**
+	 * @param umpireTwoId the umpireTwoId to set
+	 */
+	public void setUmpireTwoId(String umpireTwoId) {
+		this.umpireTwoId = umpireTwoId;
 	}
 	
 }
