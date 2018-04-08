@@ -1,0 +1,345 @@
+-- ****************** SqlDBM: MySQL ******************;
+-- ***************************************************;
+
+
+-- ************************************** `csa_tbl_tournament_setting`
+
+CREATE TABLE `csa_tbl_tournament_setting`
+(
+ `tournament_setting_id` VARCHAR(36) NOT NULL ,
+ `max_overs`             INT ,
+ `powerplay_overs`       INT ,
+ `lbw`                   INT ,
+ `wide_runs`             INT ,
+ `no_ball_runs`          INT ,
+ `free_hit`              INT ,
+ `max_overs_per_bowler`  INT ,
+
+PRIMARY KEY (`tournament_setting_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_umpire`
+
+CREATE TABLE `csa_tbl_umpire`
+(
+ `umpire_id`       VARCHAR(36) NOT NULL ,
+ `umpire_name`     VARCHAR(50) NOT NULL ,
+ `mobile_number`   VARCHAR(13) ,
+ `date_of_birth`   DATE ,
+ `matches_umpired` INT ,
+
+PRIMARY KEY (`umpire_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_playing_eleven`
+
+CREATE TABLE `csa_tbl_playing_eleven`
+(
+ `match_id`          VARCHAR(36) NOT NULL ,
+ `team_id`           VARCHAR(36) NOT NULL ,
+ `player_id`         VARCHAR(36) NOT NULL ,
+ `playing_eleven_id` VARCHAR(36) NOT NULL ,
+
+PRIMARY KEY (`playing_eleven_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_fielding_stats`
+
+CREATE TABLE `csa_tbl_fielding_stats`
+(
+ `fielding_stats_id` VARCHAR(36) NOT NULL ,
+ `catches_taken`     INT NOT NULL ,
+ `stumpings`         INT NOT NULL ,
+ `runouts`           INT NOT NULL ,
+
+PRIMARY KEY (`fielding_stats_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_bowling_stats`
+
+CREATE TABLE `csa_tbl_bowling_stats`
+(
+ `bowling_stats_id` VARCHAR(36) NOT NULL ,
+ `innings_played`   INT NOT NULL ,
+ `deliveries`       INT NOT NULL ,
+ `runs_given`       INT NOT NULL ,
+ `wickets_taken`    INT NOT NULL ,
+
+PRIMARY KEY (`bowling_stats_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_batting_stats`
+
+CREATE TABLE `csa_tbl_batting_stats`
+(
+ `batting_stats_id` VARCHAR(36) NOT NULL ,
+ `innings_played`   INT NOT NULL ,
+ `balls_faced`      INT NOT NULL ,
+ `runs`             INT NOT NULL ,
+ `highest_score`    INT NOT NULL ,
+ `notouts`          INT NOT NULL ,
+ `fours`            INT NOT NULL ,
+ `sixes`            INT NOT NULL ,
+
+PRIMARY KEY (`batting_stats_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_tournament`
+
+CREATE TABLE `csa_tbl_tournament`
+(
+ `tournament_id`         VARCHAR(36) NOT NULL ,
+ `tournament_name`       VARCHAR(100) NOT NULL ,
+ `start_date`            DATETIME NOT NULL ,
+ `end_date`              DATETIME NOT NULL ,
+ `organised_by`          VARCHAR(50) ,
+ `winner_id`             VARCHAR(36) ,
+ `tournament_setting_id` VARCHAR(36) NOT NULL ,
+ `archived`              INT COMMENT 'can be archived ' ,
+
+PRIMARY KEY (`tournament_id`),
+KEY `fkIdx_306` (`tournament_setting_id`),
+CONSTRAINT `FK_306` FOREIGN KEY `fkIdx_306` (`tournament_setting_id`) REFERENCES `csa_tbl_tournament_setting` (`tournament_setting_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_player`
+
+CREATE TABLE `csa_tbl_player`
+(
+ `player_id`         VARCHAR(36) NOT NULL ,
+ `batting_stats_id`  VARCHAR(36) NOT NULL ,
+ `bowling_stats_id`  VARCHAR(36) NOT NULL ,
+ `fielding_stats_id` VARCHAR(36) NOT NULL ,
+ `first_name`        VARCHAR(45) NOT NULL ,
+ `last_name`         VARCHAR(45) NOT NULL ,
+ `date_of_birth`     DATE NOT NULL ,
+ `matches_played`    INT NOT NULL ,
+ `team_id`           VARCHAR(36) NOT NULL ,
+
+PRIMARY KEY (`player_id`, `batting_stats_id`, `bowling_stats_id`, `fielding_stats_id`),
+KEY `fkIdx_25` (`batting_stats_id`),
+CONSTRAINT `FK_25` FOREIGN KEY `fkIdx_25` (`batting_stats_id`) REFERENCES `csa_tbl_batting_stats` (`batting_stats_id`),
+KEY `fkIdx_47` (`bowling_stats_id`),
+CONSTRAINT `FK_47` FOREIGN KEY `fkIdx_47` (`bowling_stats_id`) REFERENCES `csa_tbl_bowling_stats` (`bowling_stats_id`),
+KEY `fkIdx_58` (`fielding_stats_id`),
+CONSTRAINT `FK_58` FOREIGN KEY `fkIdx_58` (`fielding_stats_id`) REFERENCES `csa_tbl_fielding_stats` (`fielding_stats_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_match`
+
+CREATE TABLE `csa_tbl_match`
+(
+ `match_id`         VARCHAR(36) NOT NULL ,
+ `team_one_id`      VARCHAR(36) NOT NULL ,
+ `team_two_id`      VARCHAR(36) NOT NULL ,
+ `match_start_time` DATETIME ,
+ `match_end_time`   DATETIME ,
+ `toss_win_team_id` VARCHAR(36) ,
+ `decision`         INT ,
+ `match_won_by`     VARCHAR(36) ,
+ `venue`            VARCHAR(100) ,
+ `match_status`     INT COMMENT 'match status can be not started, started/live,interrupted,ended etc' ,
+ `tournament_id`    VARCHAR(36) ,
+ `match_label`      VARCHAR(50) COMMENT 'match label is used to specify which round this match belongs to' ,
+ `match_group`      VARCHAR(50) COMMENT 'describes which group this match belongs to' ,
+ `umpire_one_id`    VARCHAR(36) ,
+ `umpire_two_id`    VARCHAR(36) ,
+
+PRIMARY KEY (`match_id`),
+KEY `fkIdx_171` (`tournament_id`),
+CONSTRAINT `FK_171` FOREIGN KEY `fkIdx_171` (`tournament_id`) REFERENCES `csa_tbl_tournament` (`tournament_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_team`
+
+CREATE TABLE `csa_tbl_team`
+(
+ `team_id`       VARCHAR(36) NOT NULL ,
+ `team_name`     VARCHAR(50) NOT NULL ,
+ `owner_name`    VARCHAR(50) ,
+ `captain_name`  VARCHAR(50) ,
+ `coach_name`    VARCHAR(50) ,
+ `tournament_id` VARCHAR(36) ,
+ `archived`      INT ,
+
+PRIMARY KEY (`team_id`),
+KEY `fkIdx_96` (`tournament_id`),
+CONSTRAINT `FK_96` FOREIGN KEY `fkIdx_96` (`tournament_id`) REFERENCES `csa_tbl_tournament` (`tournament_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_inning`
+
+CREATE TABLE `csa_tbl_inning`
+(
+ `inning_id`         VARCHAR(36) NOT NULL ,
+ `match_id`          VARCHAR(36) NOT NULL ,
+ `batting_team_id`   VARCHAR(36) NOT NULL ,
+ `bowling_team_id`   VARCHAR(36) NOT NULL ,
+ `runs_scored`       INT ,
+ `wickets`           INT ,
+ `overs_bowled`      INT ,
+ `inning_status`     INT COMMENT 'not started yet/inning started /ended' ,
+ `ended_by`          INT ,
+ `deliveries_bowled` INT ,
+
+PRIMARY KEY (`inning_id`, `match_id`),
+KEY `fkIdx_153` (`match_id`),
+CONSTRAINT `FK_153` FOREIGN KEY `fkIdx_153` (`match_id`) REFERENCES `csa_tbl_match` (`match_id`)
+) COMMENT='It  is kept to frontend to select first 2 batsman for the inning. Also select bowler.';
+
+
+
+
+
+-- ************************************** `csa_tbl_schedule`
+
+CREATE TABLE `csa_tbl_schedule`
+(
+ `schedule_id`   VARCHAR(36) NOT NULL ,
+ `tournament_id` VARCHAR(36) NOT NULL ,
+ `match_id`      VARCHAR(36) NOT NULL ,
+
+PRIMARY KEY (`schedule_id`),
+KEY `fkIdx_134` (`tournament_id`),
+CONSTRAINT `FK_134` FOREIGN KEY `fkIdx_134` (`tournament_id`) REFERENCES `csa_tbl_tournament` (`tournament_id`),
+KEY `fkIdx_144` (`match_id`),
+CONSTRAINT `FK_144` FOREIGN KEY `fkIdx_144` (`match_id`) REFERENCES `csa_tbl_match` (`match_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_points_table`
+
+CREATE TABLE `csa_tbl_points_table`
+(
+ `points_table_id` VARCHAR(36) NOT NULL ,
+ `matches_played`  INT ,
+ `matches_won`     INT ,
+ `matches_lost`    INT ,
+ `no_result`       INT ,
+ `points`          INT ,
+ `net_run_rate`    DOUBLE ,
+ `team_id`         VARCHAR(36) NOT NULL ,
+ `tournament_id`   VARCHAR(36) NOT NULL ,
+
+PRIMARY KEY (`points_table_id`),
+KEY `fkIdx_302` (`team_id`),
+CONSTRAINT `FK_302` FOREIGN KEY `fkIdx_302` (`team_id`) REFERENCES `csa_tbl_team` (`team_id`),
+KEY `fkIdx_312` (`tournament_id`),
+CONSTRAINT `FK_312` FOREIGN KEY `fkIdx_312` (`tournament_id`) REFERENCES `csa_tbl_tournament` (`tournament_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_over`
+
+CREATE TABLE `csa_tbl_over`
+(
+ `over_id`             VARCHAR(36) NOT NULL ,
+ `over_number`         INT ,
+ `powerplay_over`      INT ,
+ `super_over`          INT ,
+ `bonus_over`          INT COMMENT 'E.g. double the run if this is bonus over.' ,
+ `started_at_time`     DATETIME NOT NULL ,
+ `ended_at_time`       DATETIME ,
+ `bowled_by_player_id` VARCHAR(36) NOT NULL ,
+ `inning_id`           VARCHAR(36) NOT NULL ,
+ `match_id`            VARCHAR(36) NOT NULL ,
+ `over_status`         INT ,
+
+PRIMARY KEY (`over_id`),
+KEY `fkIdx_212` (`inning_id`, `match_id`),
+CONSTRAINT `FK_212` FOREIGN KEY `fkIdx_212` (`inning_id`, `match_id`) REFERENCES `csa_tbl_inning` (`inning_id`, `match_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_delivery`
+
+CREATE TABLE `csa_tbl_delivery`
+(
+ `deivery_id`               VARCHAR(36) NOT NULL ,
+ `over_id`                  VARCHAR(36) NOT NULL ,
+ `delivery_number`          INT ,
+ `runs_scored`              INT NOT NULL ,
+ `delivery_type`            INT NOT NULL ,
+ `runs_scored_by_player_id` VARCHAR(36) NOT NULL ,
+ `wicket_id`                VARCHAR(36) ,
+ `bowled_at_time`           DATETIME ,
+ `speed`                    INT ,
+ `free_hit`                 INT ,
+
+PRIMARY KEY (`deivery_id`, `over_id`),
+KEY `fkIdx_221` (`over_id`),
+CONSTRAINT `FK_221` FOREIGN KEY `fkIdx_221` (`over_id`) REFERENCES `csa_tbl_over` (`over_id`)
+);
+
+
+
+
+
+-- ************************************** `csa_tbl_wicket`
+
+CREATE TABLE `csa_tbl_wicket`
+(
+ `wicket_id`          VARCHAR(36) NOT NULL ,
+ `taken_by_player_id` VARCHAR(36) ,
+ `wicket_type`        INT NOT NULL ,
+ `batsman_id`         VARCHAR(36) NOT NULL ,
+ `delivery_id`        VARCHAR(36) NOT NULL ,
+ `over_id`            VARCHAR(36) NOT NULL ,
+
+PRIMARY KEY (`wicket_id`),
+KEY `fkIdx_232` (`delivery_id`, `over_id`),
+CONSTRAINT `FK_232` FOREIGN KEY `fkIdx_232` (`delivery_id`, `over_id`) REFERENCES `csa_tbl_delivery` (`deivery_id`, `over_id`)
+);
+
+
+
+
