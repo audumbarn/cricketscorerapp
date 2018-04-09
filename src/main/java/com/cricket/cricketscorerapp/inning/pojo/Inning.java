@@ -13,7 +13,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @author Audumbar Nevarekar
  *
  */
-@Entity(name="cs_tbl_inning")
+@Entity(name="csa_tbl_inning")
 public class Inning {
 
 	@Id
