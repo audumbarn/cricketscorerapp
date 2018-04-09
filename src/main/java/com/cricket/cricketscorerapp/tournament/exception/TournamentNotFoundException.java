@@ -6,6 +6,8 @@ package com.cricket.cricketscorerapp.tournament.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.cricket.cricketscorerapp.util.ExceptionMessageConstants;
+
 /**
  * @author Audumbar Nevarekar
  *
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class TournamentNotFoundException extends RuntimeException{
 	
-	public TournamentNotFoundException(String exception) {
-		super(exception);
+	public TournamentNotFoundException() {
+		super(ExceptionMessageConstants.TOURNAMENT_NOT_FOUND_EXCEPTION_MSG);
 	}
 }

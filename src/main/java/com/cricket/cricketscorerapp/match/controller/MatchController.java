@@ -40,7 +40,7 @@ public class MatchController {
 	public ResponseEntity<Optional<Match>> getMatch(@PathVariable("matchId") String matchId) {
 		Optional<Match> match = matchService.getMatch(matchId);
 		if(!match.isPresent()) {
-			throw new MatchNotFoundException("Match Not Found");
+			throw new MatchNotFoundException();
 		}
 		
 		return ResponseEntity.ok(match);

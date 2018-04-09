@@ -39,7 +39,7 @@ public class TournamentController {
 	public ResponseEntity<Optional<Tournament>> getTournament(@PathVariable("tournamentId") String tournamentId) {
 		Optional<Tournament> tournament = tournamentService.getTournament(tournamentId);
 		if(!tournament.isPresent()){
-			throw new TournamentNotFoundException("Tournament Not Found");
+			throw new TournamentNotFoundException();
 		}
 		return ResponseEntity.ok().body(tournament);
 	}
