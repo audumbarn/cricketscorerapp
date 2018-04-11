@@ -1,7 +1,6 @@
 package com.cricket.cricketscorerapp.player.pojo;
 
 import java.util.Date;
-import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,7 +27,6 @@ public class Player {
 	private String firstName;
 	private String lastName;
 	private Date dateOfBirth;
-	private String teamId;
 	private int matchesPlayed;
 
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
@@ -42,16 +40,6 @@ public class Player {
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="fieldingStatsId")
 	private FieldingStats fieldingStats;
-	
-	private Player() {}
-
-	public Player(String firstName, String lastName, Date dateOfBirth, String teamId) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.teamId = teamId;
-	}
 	
 	public String getPlayerId() {
 		return playerId;
@@ -76,14 +64,6 @@ public class Player {
 	}
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
-	}
-
-	public String getTeamId() {
-		return teamId;
-	}
-
-	public void setTeamId(String teamId) {
-		this.teamId = teamId;
 	}
 
 	public int getMatchesPlayed() {
