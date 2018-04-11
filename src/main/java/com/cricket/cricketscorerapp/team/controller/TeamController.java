@@ -31,6 +31,7 @@ public class TeamController {
 	@Autowired
 	TeamService teamService;
 	
+	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String addTeam(@RequestBody Team team) {
 		return teamService.addTeam(team);
 	}
