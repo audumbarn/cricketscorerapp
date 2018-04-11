@@ -31,7 +31,6 @@ public class Match {
 	private String matchWonBy;
 	private String venue;
 	private int matchStatus;
-	private String tournamentId;
 	private String matchLabel;
 	private String matchGroup;
 	
@@ -98,12 +97,6 @@ public class Match {
 	}
 	public void setMatchStatus(int matchStatus) {
 		this.matchStatus = matchStatus;
-	}
-	public String getTournamentId() {
-		return tournamentId;
-	}
-	public void setTournamentId(String tournamentId) {
-		this.tournamentId = tournamentId;
 	}
 	public String getMatchLabel() {
 		return matchLabel;
