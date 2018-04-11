@@ -36,7 +36,7 @@ public class TeamController {
 		return teamService.addTeam(team);
 	}
 	
-	@RequestMapping(value="/get/{team}", method=RequestMethod.GET)
+	@RequestMapping(value="/get/{teamId}", method=RequestMethod.GET)
 	public ResponseEntity<Optional<Team>> getTeam(@PathVariable("teamId") String teamId) {
 		Optional<Team> team = teamService.getTeam(teamId);
 		if(!team.isPresent()){
