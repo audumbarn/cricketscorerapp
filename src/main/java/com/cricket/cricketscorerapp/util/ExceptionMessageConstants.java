@@ -16,4 +16,6 @@ public class ExceptionMessageConstants {
 	public static final String MATCH_NOT_FOUND_EXCEPTION_MSG = "Match Not Found";
 	
 	public static final String PLAYER_NOT_FOUND_EXCEPTION_MSG = "Player Not Found";
+	
+	public static final String TEAM_NOT_FOUND_EXCEPTION_MSG = "Team Not Found";
 }
