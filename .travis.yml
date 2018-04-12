@@ -14,6 +14,6 @@ deploy:
   app: "cricket-scorer-app"
   env: "cricketScorerApp-env"
   bucket_name: "elasticbeanstalk-us-east-2-339168865375"
-  zip_file: './web/build/libs/cricket-scorer-app-0.0.1-SNAPSHOT.jar'
+  zip_file: './target/cricket-scorer-app-0.0.1-SNAPSHOT.jar'
   on:
     branch: develop
