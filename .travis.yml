@@ -1,12 +1,14 @@
 language: java
 jdk: oraclejdk8
-script: mvn clean install
+install: true
+script: ./mvnw clean install
 before_install:
   - chmod +x mvnw
 notifications:
   email:
     on_success: always
 deploy:
+  skip_cleanup: true
   provider: elasticbeanstalk
   access_key_id: $ACCESSKEYID
   secret_access_key:
