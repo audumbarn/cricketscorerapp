@@ -5,3 +5,12 @@ before_install:
 notifications:
   email:
     on_success: always
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $ACCESSKEYID
+  secret_access_key:
+    secure: "$ACCESSKEY"
+  region: "us-east-2"  
+  app: "cricket-scorer-app"
+  env: "cricketScorerApp-env"
+  bucket_name: "elasticbeanstalk-us-east-2-339168865375"
