@@ -99,12 +99,4 @@ public class Team {
 	public void setArchived(int archived) {
 		this.archived = archived;
 	}
-	
-	/*public void addTournament(Tournament tournament) {
-		tournaments.add(tournament);
-	}
-	
-	public List<Tournament> getTournaments() {
-		return tournaments;
-	}*/
 }
