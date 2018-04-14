@@ -6,7 +6,6 @@ package com.cricket.cricketscorerapp.team.pojo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -26,6 +25,8 @@ public class Team {
 	private String captainName;
 	private String coachName;
 	private int archived;
+	
+	//
 	/**
 	 * @return the teamId
 	 */
@@ -99,5 +100,11 @@ public class Team {
 		this.archived = archived;
 	}
 	
+	/*public void addTournament(Tournament tournament) {
+		tournaments.add(tournament);
+	}
 	
+	public List<Tournament> getTournaments() {
+		return tournaments;
+	}*/
 }
