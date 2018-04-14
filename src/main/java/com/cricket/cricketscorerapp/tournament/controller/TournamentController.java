@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cricket.cricketscorerapp.team.pojo.Team;
+import com.cricket.cricketscorerapp.tournament.exception.TeamAlreadyExistsException;
 import com.cricket.cricketscorerapp.tournament.exception.TournamentNotFoundException;
 import com.cricket.cricketscorerapp.tournament.pojo.Tournament;
 import com.cricket.cricketscorerapp.tournament.service.TournamentService;
@@ -31,12 +32,12 @@ public class TournamentController {
 	@Autowired
 	TournamentService tournamentService;
 	
-	@RequestMapping(value="/add", method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public String addTournament(@RequestBody Tournament tournament) {
 		return tournamentService.addTournament(tournament);
 	}
 	
-	@RequestMapping(value="/get/{tournamentId}", method=RequestMethod.GET)
+	@RequestMapping(value="/{tournamentId}", method=RequestMethod.GET)
 	public ResponseEntity<Optional<Tournament>> getTournament(@PathVariable("tournamentId") String tournamentId) {
 		Optional<Tournament> tournament = tournamentService.getTournament(tournamentId);
 		if(!tournament.isPresent()){
@@ -45,22 +46,25 @@ public class TournamentController {
 		return ResponseEntity.ok().body(tournament);
 	}
 	
-	@RequestMapping(value="/get", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public List<Tournament> getAllTournaments() {
 		return tournamentService.getAllTournaments();
 	}
 	
 	//Adding a team to the tournament
-	@RequestMapping(value="/get/{tournamentId}", method=RequestMethod.PUT)
+	@RequestMapping(value="/{tournamentId}/team", method=RequestMethod.PUT)
 	public void addTournamentTeam(@PathVariable("tournamentId") String tournamentId,@RequestBody Team team) {
 		Optional<Tournament> tournament = tournamentService.getTournament(tournamentId);
 		if(!tournament.isPresent()){
 			throw new TournamentNotFoundException();
 		}
-		
-		tournament.get().addTeam(team);
-		
-		tournamentService.updateTournament(tournament.get());
+		else if((tournament.get().getTeams()).contains(team)) {
+			throw new TeamAlreadyExistsException();
+		}
+		else{
+			tournament.get().addTeam(team);
+			tournamentService.updateTournament(tournament.get());
+		}
 		
 	}
 }
