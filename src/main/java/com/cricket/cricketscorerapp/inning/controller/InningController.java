@@ -31,14 +31,12 @@ public class InningController {
 	@Autowired
 	InningService inningService;
 	
-	@RequestMapping(value="/add", method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public String addInning(@RequestBody Inning inning) throws URISyntaxException {
-		
 		return inningService.addInning(inning);
-	
 	} 
 	
-	@RequestMapping(value="/get/{inningId}", method=RequestMethod.GET)
+	@RequestMapping(value="/{inningId}", method=RequestMethod.GET)
 	public ResponseEntity<Optional<Inning>> getInning(@PathVariable("inningId") String inningId) {
 		Optional<Inning> inning = inningService.getInning(inningId);
 		if(!inning.isPresent()){
@@ -47,7 +45,7 @@ public class InningController {
 		return ResponseEntity.ok().body(inning);
 	}
 	
-	@RequestMapping(value="/get", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public List<Inning> getAllInnings() {
 		return inningService.getAllInnings();
 		

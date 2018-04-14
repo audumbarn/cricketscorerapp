@@ -31,12 +31,12 @@ public class TeamController {
 	@Autowired
 	TeamService teamService;
 	
-	@RequestMapping(value="/add", method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public String addTeam(@RequestBody Team team) {
 		return teamService.addTeam(team);
 	}
 	
-	@RequestMapping(value="/get/{teamId}", method=RequestMethod.GET)
+	@RequestMapping(value="/{teamId}", method=RequestMethod.GET)
 	public ResponseEntity<Optional<Team>> getTeam(@PathVariable("teamId") String teamId) {
 		Optional<Team> team = teamService.getTeam(teamId);
 		if(!team.isPresent()){
@@ -45,7 +45,7 @@ public class TeamController {
 		return ResponseEntity.ok().body(team);
 	}
 	
-	@RequestMapping(value="/get", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public List<Team> getAllTeams() {
 		return teamService.getAllTeams();
 	}

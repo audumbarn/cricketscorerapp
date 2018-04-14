@@ -17,18 +17,18 @@ import com.cricket.cricketscorerapp.player.pojo.Player;
 import com.cricket.cricketscorerapp.player.service.PlayerService;
 
 @RestController
-@RequestMapping("/players")
+@RequestMapping("/player")
 @CrossOrigin
 public class PlayerController {
 	@Autowired
 	PlayerService playerService;
 	
-	@RequestMapping(value="/add", method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public String addPlayer(@RequestBody Player p) {
 		return playerService.addPlayer(p);
 	}
 	
-	@RequestMapping(value="/get/{playerId}", method=RequestMethod.GET)
+	@RequestMapping(value="/{playerId}", method=RequestMethod.GET)
 	public ResponseEntity<Optional<Player>> getPlayer(@PathVariable("playerId") String playerId){
 		Optional<Player> player = playerService.getPlayer(playerId);
 		if(!player.isPresent()) {
@@ -37,7 +37,7 @@ public class PlayerController {
 		return ResponseEntity.ok(player);
 	}
 	
-	@RequestMapping(value="/get", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public List<Player> getAllPlayers(){
 		return playerService.getAllPlayers();
 	}

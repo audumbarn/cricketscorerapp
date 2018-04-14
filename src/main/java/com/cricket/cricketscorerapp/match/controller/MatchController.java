@@ -31,12 +31,12 @@ public class MatchController {
 	@Autowired
 	MatchService matchService;
 	
-	@RequestMapping(value="/add", method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public void addMatch(@RequestBody Match match) {
 		matchService.addMatch(match);
 	}
 	
-	@RequestMapping(value="/get/{matchId}", method=RequestMethod.GET)
+	@RequestMapping(value="/{matchId}", method=RequestMethod.GET)
 	public ResponseEntity<Optional<Match>> getMatch(@PathVariable("matchId") String matchId) {
 		Optional<Match> match = matchService.getMatch(matchId);
 		if(!match.isPresent()) {
@@ -46,7 +46,7 @@ public class MatchController {
 		return ResponseEntity.ok(match);
 	}
 	
-	@RequestMapping(value="/get", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public List<Match> getAllMatches() {
 		return matchService.getAllMatches();
 		
