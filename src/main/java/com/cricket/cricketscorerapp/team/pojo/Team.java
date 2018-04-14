@@ -99,4 +99,24 @@ public class Team {
 	public void setArchived(int archived) {
 		this.archived = archived;
 	}
+	
+	//method to compare if two teams are same
+	@Override
+    public boolean equals(Object o) {
+		if (o == this) {
+            return true;
+        }
+		if (!(o instanceof Team)) {
+            return false;
+        }
+		
+		return (this.teamId.equals(((Team) o).teamId));
+	}
+	
+	@Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + (this.teamId != null ? this.teamId.hashCode() : 0);
+        return hash;
+    }
 }
