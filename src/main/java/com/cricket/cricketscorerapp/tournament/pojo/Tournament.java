@@ -4,18 +4,19 @@
 package com.cricket.cricketscorerapp.tournament.pojo;
 
 import java.util.Date;
-
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.GenericGenerator;
 
+import com.cricket.cricketscorerapp.team.pojo.Team;
 import com.cricket.cricketscorerapp.tournamentsetting.pojo.TournamentSetting;
 
 /**
@@ -40,6 +41,15 @@ public class Tournament {
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name = "tournamentSettingId")
 	private TournamentSetting tournamentSetting;
+	
+	@ManyToMany(cascade = {
+			CascadeType.MERGE,
+			CascadeType.PERSIST
+	})
+	@JoinTable(name="csa_tbl_tournament_team_assoc",
+	joinColumns = @JoinColumn(name="tournamentId"),
+	inverseJoinColumns = @JoinColumn(name="teamId"))
+	private List<Team> teams;
 	
 	public String getTournamentId() {
 		return tournamentId;
@@ -90,6 +100,13 @@ public class Tournament {
 		this.tournamentSetting = tournamentSetting;
 	}
 	
+	public void addTeam(Team team) {
+		teams.add(team);
+	}
+	
+	public List<Team> getTeams() {
+		return teams;
+	}
 	
 	
 }

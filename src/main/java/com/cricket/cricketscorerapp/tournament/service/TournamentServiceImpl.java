@@ -38,4 +38,9 @@ public class TournamentServiceImpl implements TournamentService{
 		return tournamentRepository.findAll();
 	}
 
+	@Override
+	public void updateTournament(Tournament tournament) {
+		tournamentRepository.save(tournament);
+	}
+
 }

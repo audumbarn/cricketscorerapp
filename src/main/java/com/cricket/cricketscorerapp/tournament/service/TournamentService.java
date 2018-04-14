@@ -20,4 +20,5 @@ public interface TournamentService {
 	
 	public List<Tournament> getAllTournaments();
 	
+	public void updateTournament(Tournament tournament);	
 }
