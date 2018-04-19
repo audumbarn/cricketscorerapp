@@ -13,9 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
+import com.cricket.cricketscorerapp.match.pojo.Match;
 import com.cricket.cricketscorerapp.team.pojo.Team;
 import com.cricket.cricketscorerapp.tournamentsetting.pojo.TournamentSetting;
 
@@ -107,6 +109,4 @@ public class Tournament {
 	public List<Team> getTeams() {
 		return teams;
 	}
-	
-	
 }

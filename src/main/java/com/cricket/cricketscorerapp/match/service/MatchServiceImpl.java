@@ -41,4 +41,12 @@ public class MatchServiceImpl implements MatchService{
 		return matchReository.findAll();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.cricket.cricketscorerapp.match.service.MatchService#getAllMatchesInATournament(java.lang.String)
+	 */
+	@Override
+	public List<Match> getAllMatchesInATournament(String tournamentId) {
+		return matchReository.findByTournamentId(tournamentId);
+	}
+
 }

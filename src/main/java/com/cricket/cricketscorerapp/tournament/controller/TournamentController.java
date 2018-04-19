@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cricket.cricketscorerapp.match.pojo.Match;
+import com.cricket.cricketscorerapp.match.service.MatchService;
 import com.cricket.cricketscorerapp.team.pojo.Team;
 import com.cricket.cricketscorerapp.tournament.exception.TeamAlreadyExistsException;
 import com.cricket.cricketscorerapp.tournament.exception.TournamentNotFoundException;
@@ -31,6 +33,9 @@ public class TournamentController {
 
 	@Autowired
 	TournamentService tournamentService;
+	
+	@Autowired
+	MatchService matchService;
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public String addTournament(@RequestBody Tournament tournament) {
@@ -66,5 +71,11 @@ public class TournamentController {
 			tournamentService.updateTournament(tournament.get());
 		}
 		
+	}
+	
+	//Get all matches for a tournament
+	@RequestMapping(value="/{tournamentId}/matches", method=RequestMethod.GET)
+	public List<Match> getAllMatchesInATournament(@PathVariable("tournamentId")String tournamentId) {
+		return matchService.getAllMatchesInATournament(tournamentId);		
 	}
 }

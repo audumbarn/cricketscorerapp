@@ -19,4 +19,6 @@ public interface MatchService {
 	
 	public List<Match> getAllMatches();
 
+	public List<Match> getAllMatchesInATournament(String tournamentId);
+
 }
