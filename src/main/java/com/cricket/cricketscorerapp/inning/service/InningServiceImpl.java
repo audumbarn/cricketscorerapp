@@ -9,7 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cricket.cricketscorerapp.inning.pojo.Inning;
+import com.cricket.cricketscorerapp.inning.domain.Inning;
 import com.cricket.cricketscorerapp.inning.repo.InningRepository;
 
 /**
@@ -23,7 +23,7 @@ public class InningServiceImpl implements InningService {
 	InningRepository inningRepository;
 	
 	/* (non-Javadoc)
-	 * @see com.cricket.cricketscorerapp.inning.service.InningService#addInning(com.cricket.cricketscorerapp.inning.pojo.Inning)
+	 * @see com.cricket.cricketscorerapp.inning.service.InningService#addInning(com.cricket.cricketscorerapp.inning.domain.Inning)
 	 */
 	@Override
 	public String addInning(Inning inning) {

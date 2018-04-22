@@ -9,7 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cricket.cricketscorerapp.team.pojo.Team;
+import com.cricket.cricketscorerapp.team.domain.Team;
 import com.cricket.cricketscorerapp.team.repository.TeamRepository;
 
 /**
@@ -23,7 +23,7 @@ public class TeamServiceImpl implements TeamService{
 	TeamRepository teamRepository;
 	
 	/* (non-Javadoc)
-	 * @see com.cricket.cricketscorerapp.team.service.TeamService#addTeam(com.cricket.cricketscorerapp.team.pojo.Team)
+	 * @see com.cricket.cricketscorerapp.team.service.TeamService#addTeam(com.cricket.cricketscorerapp.team.domain.Team)
 	 */
 	@Override
 	public String addTeam(Team team) {

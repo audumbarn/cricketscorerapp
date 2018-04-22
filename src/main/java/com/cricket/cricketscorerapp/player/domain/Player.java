@@ -1,4 +1,4 @@
-package com.cricket.cricketscorerapp.player.pojo;
+package com.cricket.cricketscorerapp.player.domain;
 
 import java.util.Date;
 
@@ -12,9 +12,9 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.cricket.cricketscorerapp.stats.pojo.BattingStats;
-import com.cricket.cricketscorerapp.stats.pojo.BowlingStats;
-import com.cricket.cricketscorerapp.stats.pojo.FieldingStats;
+import com.cricket.cricketscorerapp.stats.domain.BattingStats;
+import com.cricket.cricketscorerapp.stats.domain.BowlingStats;
+import com.cricket.cricketscorerapp.stats.domain.FieldingStats;
 
 @Entity(name="csa_tbl_player")
 public class Player {

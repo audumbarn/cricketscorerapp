@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cricket.cricketscorerapp.schedule.pojo;
+package com.cricket.cricketscorerapp.schedule.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -6,7 +6,7 @@ package com.cricket.cricketscorerapp.tournament.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.cricket.cricketscorerapp.tournament.pojo.Tournament;
+import com.cricket.cricketscorerapp.tournament.domain.Tournament;
 
 /**
  * @author Audumbar Nevarekar

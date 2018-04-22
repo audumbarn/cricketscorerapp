@@ -6,7 +6,7 @@ package com.cricket.cricketscorerapp.team.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.cricket.cricketscorerapp.team.pojo.Team;
+import com.cricket.cricketscorerapp.team.domain.Team;
 
 /**
  * @author Audumbar Nevarekar

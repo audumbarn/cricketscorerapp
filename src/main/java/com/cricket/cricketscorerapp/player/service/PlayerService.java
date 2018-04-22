@@ -3,7 +3,7 @@ package com.cricket.cricketscorerapp.player.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.cricket.cricketscorerapp.player.pojo.Player;
+import com.cricket.cricketscorerapp.player.domain.Player;
 
 public interface PlayerService {
 

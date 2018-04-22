@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cricket.cricketscorerapp.team.domain.Team;
 import com.cricket.cricketscorerapp.team.exception.TeamNotFoundException;
-import com.cricket.cricketscorerapp.team.pojo.Team;
 import com.cricket.cricketscorerapp.team.service.TeamService;
 
 /**

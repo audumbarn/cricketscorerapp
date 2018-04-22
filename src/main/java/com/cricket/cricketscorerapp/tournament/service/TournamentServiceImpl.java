@@ -9,7 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cricket.cricketscorerapp.tournament.pojo.Tournament;
+import com.cricket.cricketscorerapp.tournament.domain.Tournament;
 import com.cricket.cricketscorerapp.tournament.repository.TournamentRepository;
 
 /**

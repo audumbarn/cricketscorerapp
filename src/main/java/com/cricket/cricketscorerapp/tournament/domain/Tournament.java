@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cricket.cricketscorerapp.tournament.pojo;
+package com.cricket.cricketscorerapp.tournament.domain;
 
 import java.util.Date;
 import java.util.List;
@@ -17,9 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
-import com.cricket.cricketscorerapp.match.pojo.Match;
-import com.cricket.cricketscorerapp.team.pojo.Team;
-import com.cricket.cricketscorerapp.tournamentsetting.pojo.TournamentSetting;
+import com.cricket.cricketscorerapp.match.domain.Match;
+import com.cricket.cricketscorerapp.team.domain.Team;
+import com.cricket.cricketscorerapp.tournamentsetting.domain.TournamentSetting;
 
 /**
  * @author Audumbar Nevarekar

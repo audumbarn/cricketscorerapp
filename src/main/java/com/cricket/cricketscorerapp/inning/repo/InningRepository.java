@@ -5,7 +5,7 @@ package com.cricket.cricketscorerapp.inning.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cricket.cricketscorerapp.inning.pojo.Inning;
+import com.cricket.cricketscorerapp.inning.domain.Inning;
 
 /**
  * @author Audumbar Nevarekar

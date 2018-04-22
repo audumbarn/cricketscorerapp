@@ -5,7 +5,7 @@ package com.cricket.cricketscorerapp.tournament.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cricket.cricketscorerapp.tournament.pojo.Tournament;
+import com.cricket.cricketscorerapp.tournament.domain.Tournament;
 
 /**
  * @author Audumbar Nevarekar

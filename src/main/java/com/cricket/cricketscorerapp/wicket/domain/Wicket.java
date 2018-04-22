@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cricket.cricketscorerapp.wicket.pojo;
+package com.cricket.cricketscorerapp.wicket.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -13,7 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.cricket.cricketscorerapp.match.pojo.Match;
+import com.cricket.cricketscorerapp.match.domain.Match;
 import com.cricket.cricketscorerapp.match.repository.MatchRepository;
 
 /**

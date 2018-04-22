@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cricket.cricketscorerapp.over.pojo;
+package com.cricket.cricketscorerapp.over.domain;
 
 import java.util.Date;
 

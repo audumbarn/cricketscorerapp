@@ -6,7 +6,7 @@ package com.cricket.cricketscorerapp.inning.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.cricket.cricketscorerapp.inning.pojo.Inning;
+import com.cricket.cricketscorerapp.inning.domain.Inning;
 
 /**
  * @author Audumbar Nevarekar

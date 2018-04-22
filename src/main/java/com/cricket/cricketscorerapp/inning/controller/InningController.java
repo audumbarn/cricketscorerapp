@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cricket.cricketscorerapp.inning.domain.Inning;
 import com.cricket.cricketscorerapp.inning.exception.InningNotFoundException;
-import com.cricket.cricketscorerapp.inning.pojo.Inning;
 import com.cricket.cricketscorerapp.inning.service.InningService;
 
 /**

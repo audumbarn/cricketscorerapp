@@ -1,4 +1,4 @@
-package com.cricket.cricketscorerapp.stats.pojo;
+package com.cricket.cricketscorerapp.stats.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

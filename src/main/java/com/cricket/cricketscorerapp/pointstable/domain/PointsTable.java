@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cricket.cricketscorerapp.pointstable.pojo;
+package com.cricket.cricketscorerapp.pointstable.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

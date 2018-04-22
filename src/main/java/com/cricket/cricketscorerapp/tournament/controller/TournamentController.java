@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cricket.cricketscorerapp.match.pojo.Match;
+import com.cricket.cricketscorerapp.match.domain.Match;
 import com.cricket.cricketscorerapp.match.service.MatchService;
-import com.cricket.cricketscorerapp.team.pojo.Team;
+import com.cricket.cricketscorerapp.team.domain.Team;
+import com.cricket.cricketscorerapp.tournament.domain.Tournament;
 import com.cricket.cricketscorerapp.tournament.exception.TeamAlreadyExistsException;
 import com.cricket.cricketscorerapp.tournament.exception.TournamentNotFoundException;
-import com.cricket.cricketscorerapp.tournament.pojo.Tournament;
 import com.cricket.cricketscorerapp.tournament.service.TournamentService;
 
 /**
