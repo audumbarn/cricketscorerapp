@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.cricket.cricketscorerapp.delivery.exception.DeliveryNotFoundException;
 import com.cricket.cricketscorerapp.inning.exception.InningNotFoundException;
 import com.cricket.cricketscorerapp.match.exception.MatchNotFoundException;
-import com.cricket.cricketscorerapp.over.OverNotFoundException;
+import com.cricket.cricketscorerapp.over.exception.OverNotFoundException;
 import com.cricket.cricketscorerapp.player.exception.PlayerNotFoundException;
 import com.cricket.cricketscorerapp.team.exception.TeamNotFoundException;
 import com.cricket.cricketscorerapp.tournament.exception.TeamAlreadyExistsException;
 import com.cricket.cricketscorerapp.tournament.exception.TournamentNotFoundException;
+import com.cricket.cricketscorerapp.tournamentsetting.exception.TournamentSettingNotFoundException;
 
 /**
  * @author Audumbar Nevarekar
@@ -32,7 +33,7 @@ public class GlobalControllerAdvice {
 
 	@ExceptionHandler({TournamentNotFoundException.class, InningNotFoundException.class,
 		MatchNotFoundException.class, PlayerNotFoundException.class, TeamNotFoundException.class,
-		DeliveryNotFoundException.class, OverNotFoundException.class})
+		DeliveryNotFoundException.class, OverNotFoundException.class, TournamentSettingNotFoundException.class})
 	@ResponseStatus(value=HttpStatus.NOT_FOUND)
 	public VndErrors notFoundException(final Exception e) {
 		log.error(e.getMessage());

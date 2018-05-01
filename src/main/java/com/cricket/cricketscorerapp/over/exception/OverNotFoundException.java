@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cricket.cricketscorerapp.over;
+package com.cricket.cricketscorerapp.over.exception;
 
 import com.cricket.cricketscorerapp.util.ExceptionMessageConstants;
 
