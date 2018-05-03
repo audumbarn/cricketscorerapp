@@ -3,9 +3,12 @@
  */
 package com.cricket.cricketscorerapp.over.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cricket.cricketscorerapp.over.domain.Over;
 import com.cricket.cricketscorerapp.over.repository.OverRepository;
 
 /**
@@ -17,4 +20,19 @@ public class OverServiceImpl implements OverService {
 
 	@Autowired
 	OverRepository overRepository;
+
+	@Override
+	public String addOver(Over over) {
+		return (overRepository.save(over)).getOverId();
+	}
+
+	@Override
+	public Optional<Over> getOver(String overId) {
+		return overRepository.findById(overId);
+	}
+	
+	@Override
+	public void updateOver(Over over) {
+		overRepository.save(over);
+	}
 }
