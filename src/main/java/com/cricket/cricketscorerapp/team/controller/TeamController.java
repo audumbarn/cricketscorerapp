@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cricket.cricketscorerapp.player.domain.Player;
+import com.cricket.cricketscorerapp.player.service.PlayerService;
 import com.cricket.cricketscorerapp.team.domain.Team;
 import com.cricket.cricketscorerapp.team.exception.TeamNotFoundException;
 import com.cricket.cricketscorerapp.team.service.TeamService;
@@ -30,6 +32,9 @@ public class TeamController {
 
 	@Autowired
 	TeamService teamService;
+	
+	@Autowired
+	PlayerService playerService;
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public String addTeam(@RequestBody Team team) {
@@ -49,4 +54,10 @@ public class TeamController {
 	public List<Team> getAllTeams() {
 		return teamService.getAllTeams();
 	}
+	
+	@RequestMapping(value="/{teamId}/player",method=RequestMethod.GET)
+	public List<Player> getTeamPlayers(@PathVariable("teamId") String teamId) {
+		return playerService.getAllPlayersInATeam(teamId);
+	}
+	
 }

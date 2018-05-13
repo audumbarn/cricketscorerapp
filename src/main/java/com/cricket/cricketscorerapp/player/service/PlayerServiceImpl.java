@@ -30,4 +30,9 @@ public class PlayerServiceImpl implements PlayerService {
 		return (playerRepository.save(player)).getPlayerId();
 	}
 
+	@Override
+	public List<Player> getAllPlayersInATeam(String teamId) {
+		return playerRepository.findByTeamId(teamId);
+	}
+
 }

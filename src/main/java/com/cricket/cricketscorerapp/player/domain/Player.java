@@ -29,6 +29,8 @@ public class Player {
 	private Date dateOfBirth;
 	private int matchesPlayed;
 
+	private String teamId;
+	
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name = "battingStatsId")
 	private BattingStats battingStats;
@@ -97,6 +99,18 @@ public class Player {
 
 	public void setFieldingStats(FieldingStats fieldingStats) {
 		this.fieldingStats = fieldingStats;
+	}
+	/**
+	 * @return the teamId
+	 */
+	public String getTeamId() {
+		return teamId;
+	}
+	/**
+	 * @param teamId the teamId to set
+	 */
+	public void setTeamId(String teamId) {
+		this.teamId = teamId;
 	}
 
 
