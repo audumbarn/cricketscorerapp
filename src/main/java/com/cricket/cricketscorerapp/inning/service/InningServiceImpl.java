@@ -42,8 +42,8 @@ public class InningServiceImpl implements InningService {
 	 * @see com.cricket.cricketscorerapp.inning.service.InningService#getAllInnings()
 	 */
 	@Override
-	public List<Inning> getAllInnings() {
-		return inningRepository.findAll();
+	public List<Inning> getMatchInnings(String matchId) {
+		return inningRepository.findByMatchId(matchId);
 	}
 
 }

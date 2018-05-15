@@ -45,9 +45,4 @@ public class InningController {
 		return ResponseEntity.ok().body(inning);
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Inning> getAllInnings() {
-		return inningService.getAllInnings();
-		
-	}
 }

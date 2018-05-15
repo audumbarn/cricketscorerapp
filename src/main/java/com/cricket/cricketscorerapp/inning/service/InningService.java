@@ -18,5 +18,5 @@ public interface InningService {
 	
 	public Optional<Inning> getInning(String inningId);
 	
-	public List<Inning> getAllInnings();
+	public List<Inning> getMatchInnings(String matchId);
 }
