@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cricket.cricketscorerapp.inning.repo;
+package com.cricket.cricketscorerapp.inning.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

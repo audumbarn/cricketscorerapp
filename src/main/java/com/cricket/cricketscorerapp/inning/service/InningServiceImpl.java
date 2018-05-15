@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cricket.cricketscorerapp.inning.domain.Inning;
-import com.cricket.cricketscorerapp.inning.repo.InningRepository;
+import com.cricket.cricketscorerapp.inning.repository.InningRepository;
 
 /**
  * @author Audumbar Nevarekar
