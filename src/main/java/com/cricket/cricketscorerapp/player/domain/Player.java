@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -16,7 +17,8 @@ import com.cricket.cricketscorerapp.stats.domain.BattingStats;
 import com.cricket.cricketscorerapp.stats.domain.BowlingStats;
 import com.cricket.cricketscorerapp.stats.domain.FieldingStats;
 
-@Entity(name="csa_tbl_player")
+@Entity
+@Table(name="csa_tbl_player")
 public class Player {
 
 	@Id

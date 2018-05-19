@@ -6,6 +6,7 @@ package com.cricket.cricketscorerapp.stats.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -13,7 +14,8 @@ import org.hibernate.annotations.GenericGenerator;
  * @author Audumbar Nevarekar
  *
  */
-@Entity(name="csa_tbl_fielding_stats")
+@Entity
+@Table(name="csa_tbl_fielding_stats")
 public class FieldingStats {
 	@Id
 	@GeneratedValue(generator="system-uuid")

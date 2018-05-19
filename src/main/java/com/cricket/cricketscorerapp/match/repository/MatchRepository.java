@@ -20,7 +20,7 @@ public interface MatchRepository extends JpaRepository<Match, String> {
 	 * @param tournamentId
 	 * @return
 	 */
-	@Query()
+	@Query("select m from Match m where m.tournamentId = :tournamentId")
 	List<Match> findByTournamentId(String tournamentId);
 
 }

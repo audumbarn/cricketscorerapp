@@ -6,13 +6,16 @@ package com.cricket.cricketscorerapp.team.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
 
 /**
  * @author Audumbar Nevarekar
  *
  */
-@Entity(name="csa_tbl_team")
+@Entity
+@Table(name="csa_tbl_team")
 public class Team {
 
 	@Id

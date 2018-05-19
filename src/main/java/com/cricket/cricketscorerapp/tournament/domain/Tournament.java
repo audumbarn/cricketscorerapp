@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import com.cricket.cricketscorerapp.match.domain.Match;
@@ -25,7 +27,8 @@ import com.cricket.cricketscorerapp.tournamentsetting.domain.TournamentSetting;
  * @author Audumbar Nevarekar
  *
  */
-@Entity(name="csa_tbl_tournament")
+@Entity
+@Table(name="csa_tbl_tournament")
 public class Tournament {
 	
 	@Id

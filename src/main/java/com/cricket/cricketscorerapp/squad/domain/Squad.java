@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,7 +20,8 @@ import com.cricket.cricketscorerapp.player.domain.Player;
  * @author Audumbar Nevarekar
  *
  */
-@Entity(name="csa_tbl_squad")
+@Entity
+@Table(name="csa_tbl_squad")
 public class Squad {
 
 	@Id
