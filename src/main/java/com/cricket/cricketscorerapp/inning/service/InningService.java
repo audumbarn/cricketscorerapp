@@ -14,7 +14,7 @@ import com.cricket.cricketscorerapp.inning.domain.Inning;
  */
 public interface InningService {
 
-	public String addInning(Inning inning);
+	public Inning addInning(Inning inning);
 	
 	public Optional<Inning> getInning(String inningId);
 	

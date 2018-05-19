@@ -6,6 +6,7 @@ package com.cricket.cricketscorerapp.delivery.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,8 +30,8 @@ public class DeliveryController {
 	DeliveryService deliveryService;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String addDelivery(@RequestBody Delivery delivery) {
-		return deliveryService.addDelivery(delivery);
+	public ResponseEntity<Delivery> addDelivery(@RequestBody Delivery delivery) {
+		return new ResponseEntity<Delivery>(deliveryService.addDelivery(delivery), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/{deliveryId}", method=RequestMethod.GET)

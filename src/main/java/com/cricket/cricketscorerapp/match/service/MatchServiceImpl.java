@@ -27,8 +27,8 @@ public class MatchServiceImpl implements MatchService{
 	MatchRepository matchReository;
 	
 	@Override
-	public void addMatch(Match match) {
-		matchReository.save(match);
+	public Match addMatch(Match match) {
+		return matchReository.save(match);
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import com.cricket.cricketscorerapp.tournament.domain.Tournament;
  */
 public interface TournamentService {
 	
-	public String addTournament(Tournament tournament);
+	public Tournament addTournament(Tournament tournament);
 	
 	public Optional<Tournament> getTournament(String tournamentId);
 	

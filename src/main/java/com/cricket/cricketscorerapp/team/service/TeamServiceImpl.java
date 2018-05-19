@@ -26,8 +26,8 @@ public class TeamServiceImpl implements TeamService{
 	 * @see com.cricket.cricketscorerapp.team.service.TeamService#addTeam(com.cricket.cricketscorerapp.team.domain.Team)
 	 */
 	@Override
-	public String addTeam(Team team) {
-		return (teamRepository.save(team)).getTeamId();
+	public Team addTeam(Team team) {
+		return teamRepository.save(team);
 	}
 
 	/* (non-Javadoc)

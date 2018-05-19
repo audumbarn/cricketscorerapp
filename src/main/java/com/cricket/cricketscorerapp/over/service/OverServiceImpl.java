@@ -22,8 +22,8 @@ public class OverServiceImpl implements OverService {
 	OverRepository overRepository;
 
 	@Override
-	public String addOver(Over over) {
-		return (overRepository.save(over)).getOverId();
+	public Over addOver(Over over) {
+		return overRepository.save(over);
 	}
 
 	@Override

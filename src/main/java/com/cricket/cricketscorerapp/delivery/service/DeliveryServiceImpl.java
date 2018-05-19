@@ -22,8 +22,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 	DeliveryRepository deliveryRepository;
 
 	@Override
-	public String addDelivery(Delivery delivery) {
-		return (deliveryRepository.save(delivery)).getDeliveryId();
+	public Delivery addDelivery(Delivery delivery) {
+		return deliveryRepository.save(delivery);
 	}
 
 	@Override

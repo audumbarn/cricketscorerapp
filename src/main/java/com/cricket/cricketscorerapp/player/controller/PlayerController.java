@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +25,8 @@ public class PlayerController {
 	PlayerService playerService;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String addPlayer(@RequestBody Player p) {
-		return playerService.addPlayer(p);
+	public ResponseEntity<Player> addPlayer(@RequestBody Player p) {
+		return new ResponseEntity<Player>(playerService.addPlayer(p), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/{playerId}", method=RequestMethod.GET)

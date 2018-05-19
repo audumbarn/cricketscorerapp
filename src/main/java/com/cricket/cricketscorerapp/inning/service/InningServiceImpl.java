@@ -26,8 +26,8 @@ public class InningServiceImpl implements InningService {
 	 * @see com.cricket.cricketscorerapp.inning.service.InningService#addInning(com.cricket.cricketscorerapp.inning.domain.Inning)
 	 */
 	@Override
-	public String addInning(Inning inning) {
-		return (inningRepository.save(inning)).getInningId();
+	public Inning addInning(Inning inning) {
+		return inningRepository.save(inning);
 	}
 
 	/* (non-Javadoc)

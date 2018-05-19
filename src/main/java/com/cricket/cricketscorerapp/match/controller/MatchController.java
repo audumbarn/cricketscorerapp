@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,8 +38,8 @@ public class MatchController {
 	InningService inningService;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public void addMatch(@RequestBody Match match) {
-		matchService.addMatch(match);
+	public ResponseEntity<Match> addMatch(@RequestBody Match match) {
+		return new ResponseEntity<Match>(matchService.addMatch(match), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/{matchId}", method=RequestMethod.GET)

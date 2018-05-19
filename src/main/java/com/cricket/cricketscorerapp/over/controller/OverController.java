@@ -6,6 +6,7 @@ package com.cricket.cricketscorerapp.over.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,8 +30,8 @@ public class OverController {
 	OverService overService;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String addOver(@RequestBody Over over) {
-		return overService.addOver(over);
+	public ResponseEntity<Over> addOver(@RequestBody Over over) {
+		return new ResponseEntity<Over>(overService.addOver(over), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/{overId}", method=RequestMethod.GET)

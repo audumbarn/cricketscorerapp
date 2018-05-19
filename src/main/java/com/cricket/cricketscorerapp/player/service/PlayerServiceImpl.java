@@ -26,8 +26,8 @@ public class PlayerServiceImpl implements PlayerService {
 	}
 
 	@Override
-	public String addPlayer(Player player) {
-		return (playerRepository.save(player)).getPlayerId();
+	public Player addPlayer(Player player) {
+		return playerRepository.save(player);
 	}
 
 	@Override

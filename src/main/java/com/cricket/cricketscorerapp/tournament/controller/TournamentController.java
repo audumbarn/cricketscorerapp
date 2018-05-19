@@ -6,6 +6,7 @@ package com.cricket.cricketscorerapp.tournament.controller;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,8 +39,9 @@ public class TournamentController {
 	MatchService matchService;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String addTournament(@RequestBody Tournament tournament) {
-		return tournamentService.addTournament(tournament);
+	public ResponseEntity<Tournament> addTournament(@RequestBody Tournament tournament) {
+		//Sending status as 201 created
+		return new ResponseEntity<Tournament>(tournamentService.addTournament(tournament), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/{tournamentId}", method=RequestMethod.GET)
@@ -56,7 +58,7 @@ public class TournamentController {
 		return tournamentService.getAllTournaments();
 	}
 	
-	//Adding a team to the tournament
+	//Adding an already created team to the tournament
 	@RequestMapping(value="/{tournamentId}/team", method=RequestMethod.PUT)
 	public void addTournamentTeam(@PathVariable("tournamentId") String tournamentId,@RequestBody Team team) {
 		Optional<Tournament> tournament = tournamentService.getTournament(tournamentId);

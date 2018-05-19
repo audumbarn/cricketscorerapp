@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,8 +38,8 @@ public class TeamController {
 	PlayerService playerService;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String addTeam(@RequestBody Team team) {
-		return teamService.addTeam(team);
+	public ResponseEntity<Team> addTeam(@RequestBody Team team) {
+		return new ResponseEntity<Team>(teamService.addTeam(team), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="/{teamId}", method=RequestMethod.GET)

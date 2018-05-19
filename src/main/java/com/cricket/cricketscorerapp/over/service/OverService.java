@@ -13,7 +13,7 @@ import com.cricket.cricketscorerapp.over.domain.Over;
  */
 public interface OverService {
 
-	String addOver(Over over);
+	Over addOver(Over over);
 	
 	Optional<Over> getOver(String overId);
 	

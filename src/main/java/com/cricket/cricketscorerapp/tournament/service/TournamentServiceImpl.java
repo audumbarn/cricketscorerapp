@@ -23,8 +23,8 @@ public class TournamentServiceImpl implements TournamentService{
 	TournamentRepository tournamentRepository;
 	
 	@Override
-	public String addTournament(Tournament tournament) {
-		return (tournamentRepository.save(tournament)).getTournamentId();
+	public Tournament addTournament(Tournament tournament) {
+		return (tournamentRepository.save(tournament));
 	}
 
 	@Override

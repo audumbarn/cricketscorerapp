@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,8 +33,8 @@ public class InningController {
 	InningService inningService;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String addInning(@RequestBody Inning inning) throws URISyntaxException {
-		return inningService.addInning(inning);
+	public ResponseEntity<Inning> addInning(@RequestBody Inning inning) throws URISyntaxException {
+		return new ResponseEntity<Inning>(inningService.addInning(inning), HttpStatus.CREATED);
 	} 
 	
 	@RequestMapping(value="/{inningId}", method=RequestMethod.GET)

@@ -13,7 +13,7 @@ import com.cricket.cricketscorerapp.delivery.domain.Delivery;
  */
 public interface DeliveryService {
 	
-	String addDelivery(Delivery delivery);
+	Delivery addDelivery(Delivery delivery);
 	
 	Optional<Delivery> getDelivery(String deliveryId);
 	

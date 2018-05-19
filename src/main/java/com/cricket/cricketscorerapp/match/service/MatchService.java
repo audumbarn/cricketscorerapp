@@ -13,7 +13,7 @@ import com.cricket.cricketscorerapp.match.domain.Match;
  *
  */
 public interface MatchService {
-	public void addMatch(Match match);
+	public Match addMatch(Match match);
 	
 	public Optional<Match> getMatch(String matchId);
 	

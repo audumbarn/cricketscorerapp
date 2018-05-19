@@ -14,7 +14,7 @@ import com.cricket.cricketscorerapp.team.domain.Team;
  */
 public interface TeamService {
 
-	public String addTeam(Team team);
+	public Team addTeam(Team team);
 	
 	public Optional<Team> getTeam(String teamId);
 	
