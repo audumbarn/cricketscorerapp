@@ -7,7 +7,17 @@ app.controller('tournamentController', ['$scope','$http','$timeout', function ($
 		tournament.organisedBy = $scope.organisedBy;
 		tournament.startDate = $scope.startDate;
 		tournament.endDate = $scope.endDate;
-		tournament.tournamentSetting = {};
+		setting={};
+		setting.freeHit=$scope.freeHit;
+		setting.lbw=$scope.lbw;
+		setting.maxOvers=$scope.maxOvers;
+		setting.maxOversPerBowler=$scope.maxOversPerBowler;
+		setting.noBallRuns=$scope.noBallRuns;
+		setting.powerplayOvers=$scope.powerplayOvers;
+		setting.wideRuns=$scope.wideRuns;
+		
+		tournament.tournamentSetting = setting;
+		
 		
 		console.log("before post");
 		$http.post( "/tournament",JSON.stringify(tournament)).then(function successCallback(response){

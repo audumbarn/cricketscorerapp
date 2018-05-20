@@ -1,27 +1,172 @@
 <!-- Page Content -->
-    <div class="container">
-
-      <div class="row" style="margin: 15pt;">
-		
-        <div class="col-md-6">
+<div class="container">
+	<form id="addTournamentForm" ng-submit="addTournament()">
+	<div class="row" style="margin: 15pt;">
+	<div class="col-md-12">
           <h5>Add new tournament!</h5>
-          <form id="addTournamentForm" ng-submit="addTournament()">
-          	<input type="text" ng-model="tournamentName" name="tournamentName" placeholder="Tournament Name" class="form-control"/><br/>
-          	<input type="text" ng-model="organisedBy" name="organisedBy" placeholder="Organiser" class="form-control" /><br/>
-          	<input type="date" ng-model="startDate" name="startDate" class="form-control col-md-4" /><br/>
-          	<input type="date" ng-model="endDate" name="endDate" class="form-control col-md-4" /><br/>
-          	
-          	
-    		 <!-- <div class="custom-control custom-checkbox my-1 mr-sm-2">
-			    <input type="checkbox" class="custom-control-input" id="customControlInline">
-			    <label class="custom-control-label" for="customControlInline">Remember my preference</label>
-			  </div> -->
-          	<input type="submit" id="submit" value="Submit" class="btn btn-success"/>
-          </form>
-        </div>
 		
-		
-     </div>
+		<div class="card">
+			<h6 class="card-header">Tournament Details</h6>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6">
+         					<div class="form-group row">
+							<label for="tournamentName" class="col-md-4 col-form-label">Tournament Name</label>
+	    					<div class="col-md-8">
+	      						<input type="text" ng-model="tournamentName" name="tournamentName" placeholder="Enter name for tournament" class="form-control"/>
+	    					</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group row">
+							<label for="organisedBy" class="col-md-4 col-form-label">Organiser</label>
+	    					<div class="col-md-8">
+	      						<input type="text" ng-model="organisedBy" name="organisedBy" placeholder="Enter name for organiser" class="form-control" />
+	    					</div>
+				 		</div>
+					</div>
+				</div>
+				
+				<div class="row">
+			<div class="col-md-6">
+				<div class="form-group row">
+					<label for="startDate" class="col-md-4 col-form-label">Starts On</label>
+					<div class="col-md-8">
+						<input type="date" ng-model="startDate" name="startDate" class="form-control" />
+					</div>
+				 </div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group row">
+					<label for="endDate" class="col-md-4 col-form-label">Ends On</label>
+					<div class="col-md-8">
+						<input type="date" ng-model="endDate" name="endDate" class="form-control" />
+					</div>
+				 </div>
+			</div>
+		</div> 
+			</div>
+		</div>
+	</div>
+	</div>
+	
       <!-- /.row -->
-    </div>
+      
+      <div class="row" style="margin: 15pt;">
+		<div class="col-md-12">
+			<div class="card ">
+				<h6 class="card-header">Settings</h6>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-6">
+	         					<div class="form-group row">
+								<label for="maxOvers" class="col-md-4 col-form-label">Maximum Overs</label>
+		    					<div class="col-md-8">
+		      						<input type="number" ng-model="maxOvers" name="maxOvers" placeholder="Enter maximum overs per inning" class="form-control"/>
+		    					</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+	         					<div class="form-group row">
+								<label for="maxOversPerBowler" class="col-md-4 col-form-label">Maximum overs per bowler</label>
+		    					<div class="col-md-8">
+		      						<input type="number" ng-model="maxOversPerBowler" name="maxOversPerBowler" placeholder="How many overs a bowler can bowl?" class="form-control"/>
+		    					</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6">
+	         					<div class="form-group row">
+								<label for="powerplayOvers" class="col-md-4 col-form-label">Powerplay Overs</label>
+		    					<div class="col-md-8">
+		      						<input type="number" ng-model="powerplayOvers" name="powerplayOvers" placeholder="How many powerplay overs per inning?" class="form-control"/>
+		    					</div>
+							</div>
+						</div>
+						
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6">
+	         					<div class="form-group row">
+								<label  class="col-md-4 col-form-label">Runs for No-ball?</label>
+		    					<div class="col-md-8" style="margin-top: 5pt;">
+		      						<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="radio" ng-model="noBallRuns" name="noballRadio" id="noball1" ng-value=1>
+									  <label class="form-check-label" for="noball1">Yes</label>
+									</div>
+									<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="radio"  ng-model="noBallRuns" name="noballRadio" id="noball0" ng-value=0>
+									  <label class="form-check-label" for="noball0">No</label>
+									</div>
+		    					</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+	         					<div class="form-group row">
+								<label class="col-md-4 col-form-label">Runs for Wide Ball?</label>
+		    					<div class="col-md-8" style="margin-top: 5pt;">
+		      						<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="radio" name="wideballRadio" id="wideball1" ng-model="wideRuns" ng-value=1>
+									  <label class="form-check-label" for="wideball1">Yes</label>
+									</div>
+									<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="radio" name="wideballRadio" id="wideball0" ng-model="wideRuns" ng-value=0>
+									  <label class="form-check-label" for="wideball0">No</label>
+									</div>
+		    					</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6">
+	         					<div class="form-group row">
+								<label  class="col-md-4 col-form-label">Free hit?</label>
+		    					<div class="col-md-8" style="margin-top: 5pt;">
+		      						<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="radio" name="freeHitRadio" id="freehit1"  ng-model="freeHit" ng-value=1>
+									  <label class="form-check-label" for="freehit0">Yes</label>
+									</div>
+									<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="radio" name="freeHitRadio" id="freehit0"  ng-model="freeHit" ng-value=0>
+									  <label class="form-check-label" for="freehit0">No</label>
+									</div>
+		    					</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+	         					<div class="form-group row">
+								<label for="lbw" class="col-md-4 col-form-label">Is LBW out?</label>
+		    					<div class="col-md-8" style="margin-top: 5pt;">
+		      						<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="radio" name="lbwRadio" id="lbw1"  ng-model="lbw" ng-value=1>
+									  <label class="form-check-label" for="lbw1">Yes</label>
+									</div>
+									<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="radio" name="lbwRadio" id="lbw0"  ng-model="lbw" ng-value=0>
+									  <label class="form-check-label" for="lbw0">No</label>
+									</div>
+		    					</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				
+			</div>
+		</div>
+		
+		<div class="row">
+		<div class="col-sm-5"></div>
+		<div class="col-sm-6"><input type="submit" id="submit" value="Submit" class="btn btn-success"/></div>
+		
+			
+		</div>
+	
+	</form>
+     
+</div>
     <!-- /.container -->
