@@ -1,0 +1,27 @@
+<!-- Page Content -->
+    <div class="container">
+
+      <div class="row" style="margin: 15pt;">
+		
+        <div class="col-md-6">
+          <h5>Add new tournament!</h5>
+          <form id="addTournamentForm" ng-submit="addTournament()">
+          	<input type="text" ng-model="tournamentName" name="tournamentName" placeholder="Tournament Name" class="form-control"/><br/>
+          	<input type="text" ng-model="organisedBy" name="organisedBy" placeholder="Organiser" class="form-control" /><br/>
+          	<input type="date" ng-model="startDate" name="startDate" class="form-control col-md-4" /><br/>
+          	<input type="date" ng-model="endDate" name="endDate" class="form-control col-md-4" /><br/>
+          	
+          	
+    		 <!-- <div class="custom-control custom-checkbox my-1 mr-sm-2">
+			    <input type="checkbox" class="custom-control-input" id="customControlInline">
+			    <label class="custom-control-label" for="customControlInline">Remember my preference</label>
+			  </div> -->
+          	<input type="submit" id="submit" value="Submit" class="btn btn-success"/>
+          </form>
+        </div>
+		
+		
+     </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
