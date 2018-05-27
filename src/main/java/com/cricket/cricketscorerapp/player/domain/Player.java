@@ -33,7 +33,7 @@ public class Player {
 
 	private String teamId;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	/*@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name = "battingStatsId")
 	private BattingStats battingStats;
 	
@@ -43,7 +43,7 @@ public class Player {
 
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="fieldingStatsId")
-	private FieldingStats fieldingStats;
+	private FieldingStats fieldingStats;*/
 	
 	public String getPlayerId() {
 		return playerId;
@@ -78,7 +78,7 @@ public class Player {
 		this.matchesPlayed = matchesPlayed;
 	}
 
-	public BattingStats getBattingStats() {
+	/*public BattingStats getBattingStats() {
 		return battingStats;
 	}
 
@@ -101,7 +101,7 @@ public class Player {
 
 	public void setFieldingStats(FieldingStats fieldingStats) {
 		this.fieldingStats = fieldingStats;
-	}
+	}*/
 	/**
 	 * @return the teamId
 	 */
