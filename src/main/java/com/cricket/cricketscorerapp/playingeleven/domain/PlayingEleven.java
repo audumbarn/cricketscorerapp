@@ -26,6 +26,20 @@ public class PlayingEleven {
 	private String matchId;
 	private String playerId;
 	private String teamId;
+	
+	//Addiing all match scores here. This will help to keep track of score
+	
+	/*private int battingStatus;	//DNB,NOTOUT,OUT
+	private int runs;
+	private int balls;
+	private int ones;
+	private int twos;
+	private int threes;
+	private int fours;
+	private int fives;
+	private int sixes;*/
+	
+	
 	/**
 	 * @return the playingElevenId
 	 */

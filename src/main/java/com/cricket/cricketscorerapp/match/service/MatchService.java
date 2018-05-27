@@ -6,6 +6,7 @@ package com.cricket.cricketscorerapp.match.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.cricket.cricketscorerapp.inning.domain.Inning;
 import com.cricket.cricketscorerapp.match.domain.Match;
 
 /**
@@ -21,4 +22,6 @@ public interface MatchService {
 
 	public List<Match> getAllMatchesInATournament(String tournamentId);
 
+	public void startMatch(Match match);
+	
 }

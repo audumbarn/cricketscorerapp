@@ -21,6 +21,9 @@ import com.cricket.cricketscorerapp.inning.service.InningService;
 import com.cricket.cricketscorerapp.match.domain.Match;
 import com.cricket.cricketscorerapp.match.exception.MatchNotFoundException;
 import com.cricket.cricketscorerapp.match.service.MatchService;
+import com.cricket.cricketscorerapp.player.domain.Player;
+import com.cricket.cricketscorerapp.playingeleven.domain.PlayingEleven;
+import com.cricket.cricketscorerapp.playingeleven.service.PlayingElevenService;
 
 /**
  * @author Audumbar Nevarekar
@@ -36,6 +39,9 @@ public class MatchController {
 	
 	@Autowired
 	InningService inningService;
+	
+	@Autowired
+	PlayingElevenService playingElevenService;
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Match> addMatch(@RequestBody Match match) {
@@ -60,5 +66,23 @@ public class MatchController {
 	@RequestMapping(value="/{matchId}/innings", method=RequestMethod.GET)
 	public List<Inning> getMatchInnings(@PathVariable("matchId") String matchId) {
 		return inningService.getMatchInnings(matchId);
+	}
+	
+	//creates 2 innings for the match, sets STATUS to started
+	@RequestMapping(value="/start", method=RequestMethod.PUT)
+	public void startMatch(@RequestBody Match match) {
+		matchService.startMatch(match);
+	}
+	
+	//Add playing eleven to the team for match
+	@RequestMapping(value="/{matchId}/{teamId}/playingeleven", method=RequestMethod.POST)
+	public void addPlayingEleven(@PathVariable("matchId") String matchId, @PathVariable("teamId") String teamId,
+			@RequestBody List<Player> players) {
+		playingElevenService.addPlayers(matchId, teamId, players);
+	}
+	
+	@RequestMapping(value="/{matchId}/{teamId}/playingeleven", method=RequestMethod.GET)
+	public List<PlayingEleven> getPlayingEleven(@PathVariable("matchId") String matchId, @PathVariable("teamId") String teamId) {
+		return playingElevenService.getPlayingEleven(matchId, teamId);
 	}
 }
