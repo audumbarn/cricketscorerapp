@@ -3,6 +3,7 @@
  */
 package com.cricket.cricketscorerapp.over.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,10 @@ public class OverServiceImpl implements OverService {
 	@Override
 	public void updateOver(Over over) {
 		overRepository.save(over);
+	}
+
+	@Override
+	public List<Over> getOvers(String inningId) {
+		return overRepository.findByInningId(inningId);
 	}
 }

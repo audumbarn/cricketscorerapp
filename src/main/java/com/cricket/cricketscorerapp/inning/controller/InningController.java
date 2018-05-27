@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cricket.cricketscorerapp.inning.domain.Inning;
 import com.cricket.cricketscorerapp.inning.exception.InningNotFoundException;
 import com.cricket.cricketscorerapp.inning.service.InningService;
+import com.cricket.cricketscorerapp.over.domain.Over;
+import com.cricket.cricketscorerapp.over.service.OverService;
 
 /**
  * @author Audumbar Nevarekar
@@ -32,6 +34,9 @@ public class InningController {
 	@Autowired
 	InningService inningService;
 	
+	@Autowired
+	OverService overService;
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Inning> addInning(@RequestBody Inning inning) throws URISyntaxException {
 		return new ResponseEntity<Inning>(inningService.addInning(inning), HttpStatus.CREATED);
@@ -44,6 +49,11 @@ public class InningController {
 			throw new InningNotFoundException();
 		}
 		return ResponseEntity.ok().body(inning);
+	}
+	
+	@RequestMapping(value="/{inningId}/over", method=RequestMethod.GET)
+	public List<Over> getOvers(@PathVariable("inningId") String inningId) {
+		return overService.getOvers(inningId);
 	}
 	
 }
