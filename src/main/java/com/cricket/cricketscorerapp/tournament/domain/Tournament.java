@@ -56,6 +56,10 @@ public class Tournament {
 	inverseJoinColumns = @JoinColumn(name="teamId"))
 	private List<Team> teams;
 	
+	private String group;
+	private String round;
+	
+	
 	public String getTournamentId() {
 		return tournamentId;
 	}
@@ -111,5 +115,29 @@ public class Tournament {
 	
 	public List<Team> getTeams() {
 		return teams;
+	}
+	/**
+	 * @return the group
+	 */
+	public String getGroup() {
+		return group;
+	}
+	/**
+	 * @param group the group to set
+	 */
+	public void setGroup(String group) {
+		this.group = group;
+	}
+	/**
+	 * @return the round
+	 */
+	public String getRound() {
+		return round;
+	}
+	/**
+	 * @param round the round to set
+	 */
+	public void setRound(String round) {
+		this.round = round;
 	}
 }

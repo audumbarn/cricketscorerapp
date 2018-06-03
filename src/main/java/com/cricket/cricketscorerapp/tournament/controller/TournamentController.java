@@ -80,4 +80,10 @@ public class TournamentController {
 	public List<Match> getAllMatchesInATournament(@PathVariable("tournamentId")String tournamentId) {
 		return matchService.getAllMatchesInATournament(tournamentId);		
 	}
+	
+	//TO DO Check whether to provide teams through tournament object or here as well
+	@RequestMapping(value="/{tournamentId}/team", method=RequestMethod.GET)
+	public List<Team> getAllTeamsInATournament(@PathVariable("tournamentId") String tournamentId) {
+		return null;
+	}
 }
