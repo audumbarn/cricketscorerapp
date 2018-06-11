@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cricket.cricketscorerapp.inning.domain.Inning;
+import com.cricket.cricketscorerapp.inning.domain.Scorecard;
 import com.cricket.cricketscorerapp.inning.exception.InningNotFoundException;
 import com.cricket.cricketscorerapp.inning.service.InningService;
 import com.cricket.cricketscorerapp.over.domain.Over;
@@ -56,4 +57,9 @@ public class InningController {
 		return overService.getOvers(inningId);
 	}
 	
+	//TODO change return type to scorecard object
+	@RequestMapping(value="/{inningId}/scorecard", method=RequestMethod.GET)
+	public Scorecard getScorecard(@PathVariable("inningId") String inningId) {
+		return inningService.getScorecard(inningId);
+	}
 }
