@@ -3,6 +3,7 @@
  */
 package com.cricket.cricketscorerapp.delivery.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,14 @@ public class DeliveryServiceImpl implements DeliveryService {
 	@Override
 	public void updateDelivery(Delivery delivery) {
 		deliveryRepository.save(delivery);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.cricket.cricketscorerapp.delivery.service.DeliveryService#getAllDeliveries(java.lang.String)
+	 */
+	@Override
+	public List<Delivery> getAllDeliveries(String inningId) {
+		
+		return deliveryRepository.findByInningId(inningId);
 	}
 }

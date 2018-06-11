@@ -44,6 +44,8 @@ public class Delivery {
 	
 	private int speed;
 	private int freeHit;
+	
+	private String inningId;
 	/**
 	 * @return the deliveryId
 	 */
@@ -163,6 +165,18 @@ public class Delivery {
 	 */
 	public void setFreeHit(int freeHit) {
 		this.freeHit = freeHit;
+	}
+	/**
+	 * @return the inningId
+	 */
+	public String getInningId() {
+		return inningId;
+	}
+	/**
+	 * @param inningId the inningId to set
+	 */
+	public void setInningId(String inningId) {
+		this.inningId = inningId;
 	}
 	
 }
