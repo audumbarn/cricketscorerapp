@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.cricket.cricketscorerapp.delivery.domain.Delivery;
 import com.cricket.cricketscorerapp.delivery.service.DeliveryService;
+import com.cricket.cricketscorerapp.delivery.util.DeliveryEnum;
 import com.cricket.cricketscorerapp.inning.domain.Inning;
 import com.cricket.cricketscorerapp.inning.domain.Scorecard;
 import com.cricket.cricketscorerapp.inning.repository.InningRepository;
@@ -70,25 +71,43 @@ public class InningServiceImpl implements InningService {
 		List<Delivery> allDeliveries = deliveryService.getAllDeliveries(inningId);
 		Map<String, Integer> batsmen = new HashMap<String, Integer>();
 		int total = 0;
+		int extras = 0;
+		int wides = 0;
+		int deliveriesBowled = 0;
 		//calculate runs
 		for(Delivery delivery: allDeliveries) {
 			/*perform check for delivery type & then take action
 			 * Actions can be: Add score to batsmen, add to total, add to extras etc
 			 */
-			
-			String batsmanId = delivery.getRunsScoredByPlayerId();
 			int runsScored = delivery.getRunsScored();
 			
-			total = total + runsScored;
-			if(batsmen.get(batsmanId) != null) {
-				batsmen.put(batsmanId, batsmen.get(batsmanId)+runsScored);
-			} else {
-				batsmen.put(batsmanId, +runsScored);
+			if(delivery.getDeliveryType() == DeliveryEnum.LEGAL) {
+				String batsmanId = delivery.getRunsScoredByPlayerId();
+				deliveriesBowled++;
+				
+				total = total + runsScored;
+				if(batsmen.get(batsmanId) != null) {
+					batsmen.put(batsmanId, batsmen.get(batsmanId)+runsScored);
+				} else {
+					batsmen.put(batsmanId, +runsScored);
+				}
+				
 			}
-			card.setInningId(inningId); //Not required though
-			card.setBatsmen(batsmen);
-			card.setTotal(total);
+			else if(delivery.getDeliveryType() == DeliveryEnum.WIDE) {
+				//This assumes we add a run for wide
+				wides = wides +runsScored;
+				card.setWides(wides);
+			}
 		}
+		extras = extras+wides;
+		total = total + extras;
+		
+		card.setOvers(deliveriesBowled/6);
+		card.setDeliveries(deliveriesBowled%6);
+		card.setInningId(inningId); //Not required though
+		card.setBatsmen(batsmen);
+		card.setTotal(total);
+		
 		return card;
 	}
 

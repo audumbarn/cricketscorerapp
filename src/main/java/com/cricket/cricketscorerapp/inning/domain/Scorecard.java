@@ -16,6 +16,73 @@ public class Scorecard {
 	private int overs;
 	private int deliveries;
 	private Map<String, Integer> batsmen;
+	
+	private int byes;
+	private int legByes;
+	private int wides;
+	private int noballs;
+	private int penaltyRuns;
+	
+	/**
+	 * @return the byes
+	 */
+	public int getByes() {
+		return byes;
+	}
+	/**
+	 * @param byes the byes to set
+	 */
+	public void setByes(int byes) {
+		this.byes = byes;
+	}
+	/**
+	 * @return the legByes
+	 */
+	public int getLegByes() {
+		return legByes;
+	}
+	/**
+	 * @param legByes the legByes to set
+	 */
+	public void setLegByes(int legByes) {
+		this.legByes = legByes;
+	}
+	/**
+	 * @return the wides
+	 */
+	public int getWides() {
+		return wides;
+	}
+	/**
+	 * @param wides the wides to set
+	 */
+	public void setWides(int wides) {
+		this.wides = wides;
+	}
+	/**
+	 * @return the noballs
+	 */
+	public int getNoballs() {
+		return noballs;
+	}
+	/**
+	 * @param noballs the noballs to set
+	 */
+	public void setNoballs(int noballs) {
+		this.noballs = noballs;
+	}
+	/**
+	 * @return the penaltyRuns
+	 */
+	public int getPenaltyRuns() {
+		return penaltyRuns;
+	}
+	/**
+	 * @param penaltyRuns the penaltyRuns to set
+	 */
+	public void setPenaltyRuns(int penaltyRuns) {
+		this.penaltyRuns = penaltyRuns;
+	}
 	/**
 	 * @return the inningId
 	 */
