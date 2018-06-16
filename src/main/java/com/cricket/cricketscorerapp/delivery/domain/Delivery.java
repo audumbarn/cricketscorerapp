@@ -5,6 +5,7 @@ package com.cricket.cricketscorerapp.delivery.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -33,6 +34,9 @@ public class Delivery {
 	
 	//TODO create enum for this
 	private int deliveryType;
+
+	//TODO create enum for this
+	private int runsType;
 	
 	//This is also a FK but not marked in the backend
 	private String runsScoredByPlayerId;
@@ -40,6 +44,7 @@ public class Delivery {
 	private String wicketId;
 	
 	//TODO See if this can be auto generated with current time
+	@Column(name="bowled_at_time", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date bowledAtTime;
 	
 	private int speed;
@@ -105,6 +110,18 @@ public class Delivery {
 	 */
 	public void setDeliveryType(int deliveryType) {
 		this.deliveryType = deliveryType;
+	}
+	/**
+	 * @return the runsType
+	 */
+	public int getRunsType() {
+		return runsType;
+	}
+	/**
+	 * @param runsType the runsType to set
+	 */
+	public void setRunsType(int runsType) {
+		this.runsType = runsType;
 	}
 	/**
 	 * @return the runsScoredByPlayerId
