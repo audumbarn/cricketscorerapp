@@ -3,6 +3,7 @@
  */
 package com.cricket.cricketscorerapp.delivery.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 	@Override
 	public Delivery addDelivery(Delivery delivery) {
+		delivery.setBowledAtTime(new Date());
 		return deliveryRepository.save(delivery);
 	}
 
