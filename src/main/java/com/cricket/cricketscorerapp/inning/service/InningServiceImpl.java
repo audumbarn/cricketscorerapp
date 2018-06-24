@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.cricket.cricketscorerapp.delivery.domain.Delivery;
 import com.cricket.cricketscorerapp.delivery.service.DeliveryService;
 import com.cricket.cricketscorerapp.delivery.util.DeliveryEnum;
+import com.cricket.cricketscorerapp.delivery.util.RunsEnum;
 import com.cricket.cricketscorerapp.inning.domain.Inning;
 import com.cricket.cricketscorerapp.inning.domain.Scorecard;
 import com.cricket.cricketscorerapp.inning.repository.InningRepository;
@@ -74,6 +75,10 @@ public class InningServiceImpl implements InningService {
 		int extras = 0;
 		int wides = 0;
 		int deliveriesBowled = 0;
+		int noballs = 0;
+		int byes = 0;
+		int legByes = 0;
+		int penalty = 0;
 		//calculate runs
 		for(Delivery delivery: allDeliveries) {
 			/*perform check for delivery type & then take action
@@ -81,25 +86,50 @@ public class InningServiceImpl implements InningService {
 			 */
 			int runsScored = delivery.getRunsScored();
 			
-			if(delivery.getDeliveryType() == DeliveryEnum.LEGAL) {
-				String batsmanId = delivery.getRunsScoredByPlayerId();
-				deliveriesBowled++;
-				
-				total = total + runsScored;
-				if(batsmen.get(batsmanId) != null) {
-					batsmen.put(batsmanId, batsmen.get(batsmanId)+runsScored);
-				} else {
-					batsmen.put(batsmanId, +runsScored);
+			if(delivery.getDeliveryType() == DeliveryEnum.LEGAL || delivery.getDeliveryType() == DeliveryEnum.NOBALL) {
+				if(delivery.getDeliveryType() == DeliveryEnum.LEGAL) {
+					deliveriesBowled++;
 				}
+				
+				if(delivery.getDeliveryType() == DeliveryEnum.NOBALL) {
+					noballs++;
+				}
+				//runs scored from bat, should be added to batsman & bowler
+				if(delivery.getRunsType() == RunsEnum.REGULAR.getType()) {
+					String batsmanId = delivery.getRunsScoredByPlayerId();
+					
+					total = total + runsScored;
+					if(batsmen.get(batsmanId) != null) {
+						batsmen.put(batsmanId, batsmen.get(batsmanId)+runsScored);
+					} else {
+						batsmen.put(batsmanId, +runsScored);
+					}
+				}
+				else if(delivery.getRunsType() == RunsEnum.LEGBYES.getType()) {
+					legByes = legByes+runsScored;
+				}
+				else if(delivery.getRunsType() == RunsEnum.BYES.getType()) {
+					byes = byes+runsScored;
+				}
+				else if(delivery.getRunsType() == RunsEnum.PENALTY.getType()) {
+					penalty = penalty+runsScored;
+				}
+				
 				
 			}
 			else if(delivery.getDeliveryType() == DeliveryEnum.WIDE) {
 				//This assumes we add a run for wide
 				wides = wides +runsScored;
-				card.setWides(wides);
 			}
 		}
-		extras = extras+wides;
+		
+		card.setWides(wides);
+		card.setByes(byes);
+		card.setLegByes(legByes);
+		card.setNoballs(noballs);
+		card.setPenaltyRuns(penalty);
+		
+		extras = wides+noballs+legByes+byes+penalty;
 		total = total + extras;
 		
 		card.setOvers(deliveriesBowled/6);

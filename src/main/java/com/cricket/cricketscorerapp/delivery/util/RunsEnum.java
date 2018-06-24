@@ -9,9 +9,9 @@ package com.cricket.cricketscorerapp.delivery.util;
  */
 public enum RunsEnum {
 	REGULAR(0),
-	WIDES(1),
-	LEGBYES(2),
-	BYES(3);
+	LEGBYES(1),
+	BYES(2),
+	PENALTY(3);
 	
 	private int type;
 	
