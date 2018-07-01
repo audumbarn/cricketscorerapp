@@ -15,7 +15,7 @@ public class Scorecard {
 	private int wickets;
 	private int overs;
 	private int deliveries;
-	private Map<String, Integer> batsmen;
+	private Map<String, Batsman> batsmen;
 	
 	private int byes;
 	private int legByes;
@@ -146,13 +146,13 @@ public class Scorecard {
 	/**
 	 * @return the batsmen
 	 */
-	public Map<String, Integer> getBatsmen() {
+	public Map<String, Batsman> getBatsmen() {
 		return batsmen;
 	}
 	/**
 	 * @param batsmen the batsmen to set
 	 */
-	public void setBatsmen(Map<String, Integer> batsmen) {
+	public void setBatsmen(Map<String, Batsman> batsmen) {
 		this.batsmen = batsmen;
 	}
 	

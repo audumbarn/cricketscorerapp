@@ -15,11 +15,14 @@ import com.cricket.cricketscorerapp.delivery.domain.Delivery;
 import com.cricket.cricketscorerapp.delivery.service.DeliveryService;
 import com.cricket.cricketscorerapp.delivery.util.DeliveryEnum;
 import com.cricket.cricketscorerapp.delivery.util.RunsEnum;
+import com.cricket.cricketscorerapp.inning.domain.Batsman;
 import com.cricket.cricketscorerapp.inning.domain.Inning;
 import com.cricket.cricketscorerapp.inning.domain.Scorecard;
 import com.cricket.cricketscorerapp.inning.repository.InningRepository;
 import com.cricket.cricketscorerapp.over.domain.Over;
 import com.cricket.cricketscorerapp.over.service.OverService;
+import com.cricket.cricketscorerapp.wicket.domain.Wicket;
+import com.cricket.cricketscorerapp.wicket.service.WicketService;
 
 /**
  * @author Audumbar Nevarekar
@@ -36,6 +39,9 @@ public class InningServiceImpl implements InningService {
 	
 	@Autowired
 	DeliveryService deliveryService;
+	
+	@Autowired
+	WicketService wicketService;
 	
 	/* (non-Javadoc)
 	 * @see com.cricket.cricketscorerapp.inning.service.InningService#addInning(com.cricket.cricketscorerapp.inning.domain.Inning)
@@ -70,7 +76,7 @@ public class InningServiceImpl implements InningService {
 		
 		List<Over> overs = overService.getOvers(inningId);
 		List<Delivery> allDeliveries = deliveryService.getAllDeliveries(inningId);
-		Map<String, Integer> batsmen = new HashMap<String, Integer>();
+		Map<String, Batsman> batsmen = new HashMap<String, Batsman>();
 		int total = 0;
 		int extras = 0;
 		int wides = 0;
@@ -85,10 +91,23 @@ public class InningServiceImpl implements InningService {
 			 * Actions can be: Add score to batsmen, add to total, add to extras etc
 			 */
 			int runsScored = delivery.getRunsScored();
+			Batsman currentBatsman = null;
 			
 			if(delivery.getDeliveryType() == DeliveryEnum.LEGAL || delivery.getDeliveryType() == DeliveryEnum.NOBALL) {
+				String batsmanId = delivery.getRunsScoredByPlayerId();
+				
+				
+				if(batsmen.get(batsmanId) != null) {
+					currentBatsman = batsmen.get(batsmanId);
+				}
+				else {
+					currentBatsman = new Batsman();
+					currentBatsman.setBatsmanId(batsmanId);
+				}
+				currentBatsman.setDeliveries(currentBatsman.getDeliveries()+1);
 				if(delivery.getDeliveryType() == DeliveryEnum.LEGAL) {
 					deliveriesBowled++;
+					
 				}
 				
 				if(delivery.getDeliveryType() == DeliveryEnum.NOBALL) {
@@ -96,14 +115,18 @@ public class InningServiceImpl implements InningService {
 				}
 				//runs scored from bat, should be added to batsman & bowler
 				if(delivery.getRunsType() == RunsEnum.REGULAR.getType()) {
-					String batsmanId = delivery.getRunsScoredByPlayerId();
 					
 					total = total + runsScored;
-					if(batsmen.get(batsmanId) != null) {
-						batsmen.put(batsmanId, batsmen.get(batsmanId)+runsScored);
-					} else {
-						batsmen.put(batsmanId, +runsScored);
+					
+					if(runsScored == 4) {
+						currentBatsman.setFours(currentBatsman.getFours()+1);
 					}
+					else if(runsScored == 6) {
+						currentBatsman.setSixes(currentBatsman.getSixes()+1);
+					}
+					currentBatsman.setRuns(currentBatsman.getRuns()+runsScored);
+					batsmen.put(batsmanId, currentBatsman);
+					
 				}
 				else if(delivery.getRunsType() == RunsEnum.LEGBYES.getType()) {
 					legByes = legByes+runsScored;
@@ -120,6 +143,11 @@ public class InningServiceImpl implements InningService {
 			else if(delivery.getDeliveryType() == DeliveryEnum.WIDE) {
 				//This assumes we add a run for wide
 				wides = wides +runsScored;
+			}
+			
+			if(delivery.getWicketId() != null) {
+				Wicket wicket = wicketService.getWicket(delivery.getWicketId());
+				currentBatsman.setWicket(wicket);
 			}
 		}
 		

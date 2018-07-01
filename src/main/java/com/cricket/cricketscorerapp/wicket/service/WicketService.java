@@ -11,5 +11,5 @@ import com.cricket.cricketscorerapp.wicket.domain.Wicket;
  */
 public interface WicketService {
 	Wicket addWicket(Wicket wicket);
-	//Wicket getWicket();
+	Wicket getWicket(String wicketId);
 }
