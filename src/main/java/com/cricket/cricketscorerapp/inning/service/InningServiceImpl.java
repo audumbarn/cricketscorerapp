@@ -147,7 +147,7 @@ public class InningServiceImpl implements InningService {
 			
 			if(delivery.getWicketId() != null) {
 				Wicket wicket = wicketService.getWicket(delivery.getWicketId());
-				currentBatsman.setWicket(wicket);
+				batsmen.get(wicket.getBatsmanId()).setWicket(wicket);
 			}
 		}
 		
